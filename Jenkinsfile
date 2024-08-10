@@ -36,10 +36,6 @@ pipeline{
      }
      stage('deploy to artifactory'){
         steps{
-           script{
-                  stage=env.STAGE_NAME
-            }
-     
                  rtUpload (
                      serverId: 'Artifactory12',
                      spec: '''{
@@ -51,7 +47,11 @@ pipeline{
          ]
     }'''
                     )
-        }}
+        }
+     script{
+                  stage=env.STAGE_NAME
+            }
+     }
      
     }
     post {  
