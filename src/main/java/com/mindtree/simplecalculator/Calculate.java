@@ -10,8 +10,8 @@ public class Calculate {
 		return x-y;
 	}
 	public static void main(String[] args) {
-		int x=70;
-		int y=20;
+		int x=80;
+		int y=10;
 		System.out.println(add(x,y));
 		System.out.println(subtract(x,y));
 	}
