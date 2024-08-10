@@ -8,9 +8,7 @@ pipeline{
   stages {
       stage("Maven Build"){
           steps{
-             script{
-                stage=env.STAGE_NAME
-               }
+             
               sh 'mvn -B -DskipTests clean package'
              
           }
@@ -18,9 +16,7 @@ pipeline{
       }
       stage('Maven Test'){
             steps{
-               script{
-                  stage=env.STAGE_NAME
-            }
+   
                 sh 'mvn test'
             }
             post{
@@ -47,9 +43,7 @@ pipeline{
          ]
     }'''
                     )
-           script{
-                  stage=env.STAGE_NAME
-            }
+           
         }
      
      }
@@ -64,7 +58,7 @@ pipeline{
             emailext attachLog: true, body: "<b>Example</b><br>Project: ${env.JOB_NAME}", from: 'aruncjayaprakash@gmail.com',compressLog: true, mimeType: 'text/html', replyTo: '', subject: "Deploy Successfull Project ${env.JOB_NAME}", to: "aruncjayaprakash@gmail.com";
          }  
          failure {  
-             mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Stage Name: $stage <br> URL de build: ${env.BUILD_URL}", cc: 'kousigowthaman99@gmail.com', charset: 'UTF-8', from: 'aruncjayaprakash@gmail.com', mimeType: 'text/html', replyTo: '', subject: "Deployment failed for Project -> ${env.JOB_NAME}", to: "aruncjayaprakash@gmail.com";  
+             mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Stage Name: ${env.STAGE_NAME} <br> URL de build: ${env.BUILD_URL}", cc: 'kousigowthaman99@gmail.com', charset: 'UTF-8', from: 'aruncjayaprakash@gmail.com', mimeType: 'text/html', replyTo: '', subject: "Deployment failed for Project -> ${env.JOB_NAME}", to: "aruncjayaprakash@gmail.com";  
          }  
          unstable { 
              echo 'This will run only if the run was marked as unstable'  
