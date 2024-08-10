@@ -38,7 +38,7 @@ pipeline{
         steps{
      
                  rtUpload (
-                     serverId: 'jfrog-instance',
+                     serverId: 'Artifactory',
                      spec: '''{
           "files": [
             {
