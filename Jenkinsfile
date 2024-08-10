@@ -47,10 +47,11 @@ pipeline{
          ]
     }'''
                     )
-        }
-     script{
+           script{
                   stage=env.STAGE_NAME
             }
+        }
+     
      }
      
     }
